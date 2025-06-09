@@ -1,0 +1,55 @@
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Đăng nhập hệ thống</title>
+  <link rel="stylesheet" href="../src/login.css">
+</head>
+<body>
+  <a href="index.html"><button class="back-button">Quay lại</button></a>
+  <div class="login-wrapper">
+    <h2>Đăng nhập hệ thống</h2>
+    
+    <!-- <div class="error-message">Tên đăng nhập hoặc mật khẩu không đúng.</div> -->
+
+    <form action="login.php" method="POST" novalidate>
+      <label for="username">Tài khoản đăng nhập</label>
+      <input type="text" id="username" name="username" placeholder="Nhập mã sinh viên" required autofocus />
+
+      <label for="password">Mật khẩu</label>
+      <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required />
+
+      <!-- Ô checkbox hiện mật khẩu -->
+      <div class="show-password">
+        <input type="checkbox" id="togglePassword" />
+        <label for="togglePassword">Hiện mật khẩu</label>
+      </div>
+
+      <button type="submit" class="login-btn">Đăng nhập</button>
+    </form>
+
+    <div class="forgot-password">
+      <a href="#">Quên mật khẩu?</a>
+    </div>
+
+    <div class="register-link">
+      Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+    </div>
+  </div>
+
+  <!-- JavaScript để xử lý hiển thị mật khẩu -->
+  <script>
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+
+    togglePassword.addEventListener("change", function () {
+      if (this.checked) {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    });
+  </script>
+</body>
+</html>
+
