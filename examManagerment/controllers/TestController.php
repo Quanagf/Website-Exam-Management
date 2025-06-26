@@ -37,16 +37,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
 }
 
 // ✅ Xử lý xoá đề
-if ($_GET['action'] === 'delete' && isset($_GET['id'])) {
-    $test_id = intval($_GET['id']);
+if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+    $test_id = intval($_POST['test_id']);
 
-    // Kiểm tra đăng nhập & quyền (nếu cần)
+    // Kiểm tra đăng nhập & quyền
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'creator') {
         header("Location: ../index.php");
         exit();
     }
 
-    // Kiểm tra quyền sở hữu đề (tuỳ chọn)
+    // Kiểm tra quyền sở hữu
     $check = $conn->prepare("SELECT id FROM tests WHERE id = ? AND test_creator_id = ?");
     $check->bind_param("ii", $test_id, $_SESSION['user']['id']);
     $check->execute();
@@ -58,7 +58,7 @@ if ($_GET['action'] === 'delete' && isset($_GET['id'])) {
         exit();
     }
 
-    // Xoá các câu hỏi thuộc đề
+    // Xoá câu hỏi trước
     $conn->query("DELETE FROM questions WHERE test_id = $test_id");
 
     // Xoá đề thi

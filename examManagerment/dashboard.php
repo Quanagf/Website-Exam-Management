@@ -7,6 +7,19 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
+$success = '';
+if (isset($_SESSION['success'])) {
+    $success = $_SESSION['success'];
+    unset($_SESSION['success']);
+}
+
+$error = '';
+if (isset($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']);
+}
+
+
 $user = $_SESSION['user'];
 $role = $user['role'];
 ?>
@@ -50,6 +63,12 @@ $role = $user['role'];
     <?php elseif ($role === 'creator'): ?>
         <h3>Dashboard Người tạo đề</h3>
         <a href="views/testcreator/create_test.php">➕ Tạo đề mới</a>
+        <?php if (!empty($success)): ?>
+        <p style="color: green ;"><?php echo $success; ?></p>
+        <?php endif; ?>
+        <?php if (!empty($error)): ?>
+        <p style="color: green ;"><?php echo $error; ?></p>
+        <?php endif; ?>
         <h4>📂 Danh sách đề đã tạo</h4>
         <?php
         $id = intval($user['id']);

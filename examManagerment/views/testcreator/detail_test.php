@@ -7,12 +7,6 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-$success = '';
-if (isset($_SESSION['success'])) {
-    $success = $_SESSION['success'];
-    unset($_SESSION['success']);
-}
-
 
 
 $user = $_SESSION['user'];
@@ -37,14 +31,11 @@ $test = $test_result->fetch_assoc();
     <a href="../../controllers/TestController.php?action=delete&id=<?= $test['id'] ?>" onclick="return confirm('Bạn chắc chắn muốn xoá đề này?')">🗑️ Xoá đề</a>
 </p>
 
-<?php if (!empty($success)): ?>
-    <p style="color: green ;"><?php echo $success; ?></p>
-    <?php endif; ?>
+
 
 <hr>
 
 <h3>📋 Danh sách câu hỏi trong đề:</h3>
-
 <?php
 $questions = $conn->query("SELECT * FROM questions WHERE test_id = $test_id ORDER BY id ASC");
 if ($questions->num_rows > 0): ?>
