@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="../src/exam.css">
+    <style>
+        .quiz-list, .quiz-content {
+            margin: 20px;
+        }
+        .quiz-content {
+            display: none;
+        }
+        .start-button, .submit-button {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .start-button:hover, .submit-button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 15px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Quản lý thi trắc nghiệm</h1>
+        <div class="menu-container">
+            <div class="hamburger">&#9776;</div>
+            <div class="menu-items">
+                <a href="../view/index.html">Trang chủ</a>
+                <a href="../view/introduce.html">Giới thiệu</a>
+                <a href="../view/support.html">Liên hệ</a>
+                <a href="../view/login.html">Đăng nhập</a>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <div class="menu-items1"><a href="../view/index.html"><span class="icon">🏠</span> Trang Chủ</a></div>
+            <div class="menu-items1"><a href="../user/exam.html"><span class="icon">📝</span> Bài Thi</a></div>
+            <div class="menu-items1"><a href="../user/point.html"><span class="icon">📊</span> Điểm Thi</a></div>
+            <div class="menu-items1"><a href="../view/support.html"><span class="icon">📬</span> Liên Hệ</a></div>
+            <div class="menu-items1"><a href="../view/setting.html"><span class="icon">⚙️</span> Cài Đặt</a></div> 
+            <div class="login-box"><a href="../view/login.html">Đăng nhập</a></div>
+        </div>
+        <div class="line"></div>
+        <div class="main2">
+            <h2 style="text-align: center;">📝 Danh sách các bài thi</h2>
+            <div class="quiz-list">
+                <div class="quiz-card">
+                    <h3>📘 Tin học văn phòng</h3>
+                    <p>Bài thi gồm nhiều câu hỏi về Word, Excel, PowerPoint cơ bản.</p>
+                    <a href="#" class="start-button" onclick="showQuiz('quiz1')">Làm bài</a>
+                </div>
+                <div class="quiz-card">
+                    <h3>🌐 Mạng máy tính</h3>
+                    <p>Kiến thức về mô hình OSI, giao thức TCP/IP.</p>
+                    <a href="#" class="start-button" onclick="showQuiz('quiz2')">Làm bài</a>
+                </div>
+                <div class="quiz-card">
+                    <h3>💻 Cấu trúc máy tính</h3>
+                    <p>Câu hỏi về CPU, bộ nhớ, bus.</p>
+                    <a href="#" class="start-button" onclick="showQuiz('quiz3')">Làm bài</a>
+                </div>
+            </div>
+
+            <!-- Quiz 1 -->
+            <div id="quiz1" class="quiz-content">
+                <h3>📘 Tin học văn phòng</h3>
+                <p>1. Word là phần mềm gì?</p>
+                <input type="radio" name="quiz1-q1" value="1"> Soạn thảo văn bản<br>
+                <input type="radio" name="quiz1-q1" value="0"> Bảng tính<br>
+                <input type="radio" name="quiz1-q1" value="0"> Thiết kế đồ họa<br><br>
+                
+                <p>2. Excel được dùng để làm gì?</p>
+                <input type="radio" name="quiz1-q2" value="0"> Soạn thảo văn bản<br>
+                <input type="radio" name="quiz1-q2" value="1"> Bảng tính<br>
+                <input type="radio" name="quiz1-q2" value="0"> Trình duyệt web<br><br>
+
+                <button class="submit-button" onclick="submitQuiz('quiz1', 2)">Nộp bài</button>
+                <div id="result-quiz1" class="result"></div>
+            </div>
+
+            <!-- Quiz 2 -->
+            <div id="quiz2" class="quiz-content">
+                <h3>🌐 Mạng máy tính</h3>
+                <p>1. Giao thức TCP/IP dùng để làm gì?</p>
+                <input type="radio" name="quiz2-q1" value="0"> Lưu trữ dữ liệu<br>
+                <input type="radio" name="quiz2-q1" value="1"> Truyền dữ liệu mạng<br>
+                <input type="radio" name="quiz2-q1" value="0"> Thiết kế phần mềm<br><br>
+                
+                <p>2. Mô hình OSI có mấy tầng?</p>
+                <input type="radio" name="quiz2-q2" value="0"> 5<br>
+                <input type="radio" name="quiz2-q2" value="1"> 7<br>
+                <input type="radio" name="quiz2-q2" value="0"> 9<br><br>
+
+                <button class="submit-button" onclick="submitQuiz('quiz2', 2)">Nộp bài</button>
+                <div id="result-quiz2" class="result"></div>
+            </div>
+
+            <!-- Quiz 3 -->
+            <div id="quiz3" class="quiz-content">
+                <h3>💻 Cấu trúc máy tính</h3>
+                <p>1. CPU là gì?</p>
+                <input type="radio" name="quiz3-q1" value="1"> Bộ xử lý trung tâm<br>
+                <input type="radio" name="quiz3-q1" value="0"> Bộ nhớ trong<br>
+                <input type="radio" name="quiz3-q1" value="0"> Ổ đĩa cứng<br><br>
+                
+                <p>2. RAM thuộc loại bộ nhớ nào?</p>
+                <input type="radio" name="quiz3-q2" value="1"> Bộ nhớ trong<br>
+                <input type="radio" name="quiz3-q2" value="0"> Bộ nhớ ngoài<br>
+                <input type="radio" name="quiz3-q2" value="0"> Bộ xử lý<br><br>
+
+                <button class="submit-button" onclick="submitQuiz('quiz3', 2)">Nộp bài</button>
+                <div id="result-quiz3" class="result"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">@2025 Website đơn giản</div>
+</div>
+
+<script>
+function showQuiz(id) {
+    document.querySelector('.quiz-list').style.display = 'none';
+    document.querySelectorAll('.quiz-content').forEach(div => div.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+
+function submitQuiz(quizId, totalQuestions) {
+    let correct = 0;
+    for (let i = 1; i <= totalQuestions; i++) {
+        const radios = document.querySelectorAll(`input[name="${quizId}-q${i}"]`);
+        let selected = null;
+        radios.forEach(radio => {
+            if (radio.checked) selected = radio.value;
+        });
+        if (selected === null) {
+            alert(`Vui lòng chọn đáp án câu ${i}!`);
+            return;
+        }
+        if (selected === "1") correct++;
+    }
+    document.getElementById('result-' + quizId).innerText = `Bạn trả lời đúng ${correct}/${totalQuestions} câu.`;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cài đặt</title>
+    <link rel="stylesheet" href="../src/layout.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>Quản lý thi trắc nghiệm</h1>
+            <div class="menu-container">
+                <div class="hamburger">&#9776;</div> 
+                <div class="menu-items">
+                    <a href="index.html">Trang chủ</a>
+                    <a href="introduce.html">Giới thiệu</a>
+                    <a href="support.html">Liên hệ</a>
+                    <a href="login.html">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+      
+        <div class="main">
+            <div class="main1">
+                <div class="menu-items1"><a href="index.html"><span class="icon">🏠</span> Trang Chủ</a></div>
+                <div class="menu-items1"><a href="../user/exam.html"><span class="icon">📝</span> Bài Thi</a></div>
+                <div class="menu-items1"><a href="../user/point.html"><span class="icon">📊</span> Điểm Thi</a></div>
+                <div class="menu-items1"><a href="support.html"><span class="icon">📬</span> Liên Hệ</a></div>
+                <div class="menu-items1"><a href="setting.html"><span class="icon">⚙️</span> Cài Đặt</a></div>
+                <div class="login-box"><a href="login.html">Đăng nhập</a></div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="main2">
+        
+                <div id="info" class="setting-section">
+                    <h3>👤 Cập nhật thông tin</h3>
+                    <input type="text" placeholder="Họ tên mới">
+                    <input type="email" placeholder="Email mới">
+                    <button onclick="alert('Thông tin đã được cập nhật!')">Lưu</button>
+                </div>
+
+                <div id="password" class="setting-section">
+                    <h3>🔒 Đổi mật khẩu</h3>
+                    <input type="password" placeholder="Mật khẩu cũ">
+                    <input type="password" placeholder="Mật khẩu mới">
+                    <input type="password" placeholder="Xác nhận mật khẩu mới">
+                    <button onclick="alert('Đã đổi mật khẩu!')">Đổi mật khẩu</button>
+                </div>
+
+                <div id="logout" class="setting-section">
+                    <h3>🚪 Đăng xuất</h3>
+                    <button onclick="logout()">Đăng xuất</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer">@2025 Website đơn giản</div>
+    </div>
+
+    <script>
+    function showSection(id) {
+        const sections = document.querySelectorAll('.setting-section');
+        sections.forEach(sec => sec.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+    }
+
+    function logout() {
+        if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+            alert("Bạn đã đăng xuất!");
+            window.location.href = "login.html";
+        }
+    }
+    </script>
+</body>
+</html>

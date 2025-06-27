@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý tài khoản</title>
+  <link rel="stylesheet" href="../src/admin.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #f2f2f2;
+    }
+    .action-btn {
+      margin-right: 5px;
+      padding: 4px 8px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .edit-btn {
+      background: #007BFF;
+      color: white;
+    }
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+    }
+    .add-form {
+      margin-top: 20px;
+    }
+    .add-form input {
+      padding: 6px;
+      margin-right: 10px;
+    }
+    .add-form button {
+      padding: 6px 12px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Quản lý thi trắc nghiệm</h1>
+    <div class="menu-container">
+      <div class="hamburger">&#9776;</div>
+      <div class="menu-items">
+        <a href="index.html">Trang chủ</a>
+        <a href="introduce.html">Giới thiệu</a>
+        <a href="support.html">Liên hệ</a>
+        <a href="login.html">Đăng nhập</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main1">
+      <div class="menu-items1"><a href="admin.html"><span class="icon">🏠</span> Trang Chủ</a></div>
+      <div class="menu-items1"><a href="dashboard.html"><span class="icon">📊</span> Dashboard</a></div>
+      <div class="menu-items1"><a href="user.html"><span class="icon">👥</span> Quản lý tài khoản</a></div>
+      <div class="menu-items1"><a href="../user/exam.html"><span class="icon">📝</span> Bài Thi</a></div>
+      <div class="login-box"><a href="login.html">Đăng nhập</a></div>
+    </div>
+    <div class="line"></div>
+
+    <div class="main2">
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên tài khoản</th>
+            <th>Mật khẩu</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>admin</td>
+            <td>admin123</td>
+            <td>
+              <button class="action-btn edit-btn" onclick="editUser(this)">Sửa</button>
+              <button class="action-btn delete-btn" onclick="deleteUser(this)">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>user1</td>
+            <td>userpass1</td>
+            <td>
+              <button class="action-btn edit-btn" onclick="editUser(this)">Sửa</button>
+              <button class="action-btn delete-btn" onclick="deleteUser(this)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="add-form">
+        <input type="text" id="newUsername" placeholder="Tên tài khoản" required>
+        <input type="text" id="newPassword" placeholder="Mật khẩu" required>
+        <button onclick="addUser()">Thêm tài khoản</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">@2025 Website đơn giản</div>
+</div>
+
+<script>
+  function addUser() {
+    const username = document.getElementById("newUsername").value.trim();
+    const password = document.getElementById("newPassword").value.trim();
+    if (username === "" || password === "") {
+      alert("Vui lòng nhập đầy đủ thông tin!");
+      return;
+    }
+    const table = document.getElementById("userTable").getElementsByTagName("tbody")[0];
+    const newRow = table.insertRow();
+    const idCell = newRow.insertCell(0);
+    const userCell = newRow.insertCell(1);
+    const passCell = newRow.insertCell(2);
+    const actionCell = newRow.insertCell(3);
+    const newId = table.rows.length;
+    idCell.innerText = newId;
+    userCell.innerText = username;
+    passCell.innerText = password;
+    actionCell.innerHTML = `
+      <button class="action-btn edit-btn" onclick="editUser(this)">Sửa</button>
+      <button class="action-btn delete-btn" onclick="deleteUser(this)">Xóa</button>
+    `;
+    document.getElementById("newUsername").value = "";
+    document.getElementById("newPassword").value = "";
+  }
+
+  function editUser(btn) {
+    const row = btn.parentElement.parentElement;
+    const userCell = row.cells[1];
+    const passCell = row.cells[2];
+    const newUsername = prompt("Nhập tên mới:", userCell.innerText);
+    const newPassword = prompt("Nhập mật khẩu mới:", passCell.innerText);
+    if (newUsername !== null && newUsername.trim() !== "") {
+      userCell.innerText = newUsername.trim();
+    }
+    if (newPassword !== null && newPassword.trim() !== "") {
+      passCell.innerText = newPassword.trim();
+    }
+  }
+
+  function deleteUser(btn) {
+    if (confirm("Bạn có chắc muốn xóa tài khoản này không?")) {
+      const row = btn.parentElement.parentElement;
+      row.remove();
+    }
+  }
+</script>
+
+</body>
+</html>
