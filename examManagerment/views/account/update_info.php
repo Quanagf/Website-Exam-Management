@@ -1,35 +1,27 @@
 <?php
 session_start();
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 if (!isset($_SESSION['user'])) {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit();
 }
 
 $user = $_SESSION['user'];
-
-if (isset($_POST['update'])) {
-    $fullname = $_POST['fullname'];
-    $email = $_POST['email'];
-
-    $sql = "UPDATE users SET fullname=?, email=? WHERE id=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssi", $fullname, $email, $user['id']);
-    if ($stmt->execute()) {
-        $_SESSION['user']['fullname'] = $fullname;
-        $_SESSION['user']['email'] = $email;
-        echo "Cập nhật thành công!";
-    } else {
-        echo "Lỗi: " . $stmt->error;
-    }
-}
+$fullname = $user['fullname'] ?? '';
+$email = $user['email'] ?? '';
 ?>
 
 <h2>Cập nhật thông tin</h2>
-<form method="post">
-    Họ tên: <input type="text" name="fullname" value="<?= $user['fullname'] ?>" required><br>
-    Email: <input type="email" name="email" value="<?= $user['email'] ?>" required><br>
-    <button name="update">Cập nhật</button>
+
+<form method="post" action="../../controllers/ProfileController.php">
+    <label>Họ tên:</label><br>
+    <input type="text" name="fullname" value="<?= htmlspecialchars($fullname) ?>" required><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" required><br><br>
+
+    <button type="submit" name="update_info">💾 Cập nhật</button>
 </form>
-<a href="profile.php">← Quay lại</a>
+
+<a href="profile.php">🔙 Quay lại</a>

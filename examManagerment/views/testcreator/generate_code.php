@@ -3,7 +3,7 @@ session_start();
 require_once '../config/database.php';
 
 if ($_SESSION['user']['role'] !== 'creator') {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit();
 }
 

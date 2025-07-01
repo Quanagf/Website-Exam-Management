@@ -5,6 +5,26 @@ if (isset($_SESSION['success'])) {
     echo "<p style='color: green'>" . $_SESSION['success'] . "</p>";
     unset($_SESSION['success']);
 }
+
+
+// Nếu đã đăng nhập → tự động vào dashboard theo role
+if (isset($_SESSION['user'])) {
+    $role = $_SESSION['user']['role'];
+    switch ($role) {
+        case 'admin':
+            header("Location: views/admin/dashboard_admin.php");
+            break;
+        case 'creator':
+            header("Location: views/testcreator/dashboard_testcreator.php");
+            break;
+        case 'taker':
+            header("Location: views/testtaker/dashboard_taker.php");
+            break;
+        default:
+            echo "Không xác định được vai trò.";
+    }
+    exit();
+}
 ?>
 
 

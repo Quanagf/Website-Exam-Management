@@ -1,49 +1,32 @@
 <?php
 session_start();
-require_once '../config/database.php';
+$user = $_SESSION['user'] ?? null;
 
-if (!isset($_SESSION['user'])) {
-    header("Location: ../index.php");
+if (!$user) {
+    header("Location: ../../index.php");
     exit();
 }
 
-if (isset($_POST['change'])) {
-    $current = $_POST['current_password'];
-    $new = $_POST['new_password'];
-    $confirm = $_POST['confirm_password'];
-
-    $user = $_SESSION['user'];
-
-    $sql = "SELECT password FROM users WHERE id=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user['id']);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-
-    if (!password_verify($current, $row['password'])) {
-        echo "Mật khẩu hiện tại không đúng!";
-    } elseif ($new !== $confirm) {
-        echo "Xác nhận mật khẩu không khớp!";
-    } else {
-        $newHashed = password_hash($new, PASSWORD_BCRYPT);
-        $updateSql = "UPDATE users SET password=? WHERE id=?";
-        $updateStmt = $conn->prepare($updateSql);
-        $updateStmt->bind_param("si", $newHashed, $user['id']);
-        if ($updateStmt->execute()) {
-            echo "Đổi mật khẩu thành công!";
-        } else {
-            echo "Lỗi khi đổi mật khẩu.";
-        }
-    }
-}
+$success = $_SESSION['success'] ?? '';
+$error = $_SESSION['error'] ?? '';
+unset($_SESSION['success'], $_SESSION['error']);
 ?>
+<?php if ($success): ?><p style="color: green;"><?= $success ?></p><?php endif; ?>
+<?php if ($error): ?><p style="color: red;"><?= $error ?></p><?php endif; ?>
+<h2>🔑 Đổi mật khẩu</h2>
 
-<h2>Đổi mật khẩu</h2>
-<form method="post">
-    Mật khẩu hiện tại: <input type="password" name="current_password" required><br>
-    Mật khẩu mới: <input type="password" name="new_password" required><br>
-    Xác nhận mật khẩu mới: <input type="password" name="confirm_password" required><br>
-    <button name="change">Đổi mật khẩu</button>
+<form method="post" action="../../controllers/ProfileController.php">
+    <label>Mật khẩu hiện tại:</label><br>
+    <input type="password" name="current_password" required><br>
+
+    <label>Mật khẩu mới:</label><br>
+    <input type="password" name="new_password" required><br>
+
+    <label>Xác nhận mật khẩu mới:</label><br>
+    <input type="password" name="confirm_password" required><br><br>
+
+    <button type="submit" name="change_password">🔁 Đổi mật khẩu</button>
 </form>
-<a href="profile.php">← Quay lại</a>
+
+
+<p><a href="profile.php">🔙 Quay lại trang quản lý tài khoản</a></p>
