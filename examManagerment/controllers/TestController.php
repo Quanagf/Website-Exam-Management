@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
 
     do {
         $share_code = generateShareCode();
-        $checkStmt = $conn->prepare("SELECT id FROM tests WHERE share_code = ?");
+        $checkStmt = $conn->prepare("SELECT id FROM tests WHERE test_creator_id = ?");
         $checkStmt->bind_param("s", $share_code);
         $checkStmt->execute();
         $checkStmt->store_result();

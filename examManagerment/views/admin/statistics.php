@@ -30,22 +30,86 @@ $total_tests = safe_query($conn, "SELECT COUNT(*) AS total FROM tests");
 $total_questions = safe_query($conn, "SELECT COUNT(*) AS total FROM questions");
 $total_responses = safe_query($conn, "SELECT COUNT(*) AS total FROM test_responses");
 ?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>📊 Thống kê hệ thống</title>
+    <link rel="stylesheet" href="../../src/css/layout.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #336699;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>👑 Thống kê hệ thống</h1>
+        <div class="menu-container">
+            <div class="hamburger">&#9776;</div>
+            <div class="menu-items">
+                <a href="../../index.php">Trang chủ</a>
+                <a href="../../logout.php">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
 
-<h2>📊 Thống kê hệ thống</h2>
+    <!-- Main -->
+    <div class="main">
+        <!-- Sidebar -->
+        <div class="main1">
+            <div class="menu-items1"><a href="user_management.php"><span class="icon">👥</span> Quản lý người dùng</a></div>
+            <div class="menu-items1"><a href="test_management.php"><span class="icon">🧪</span> Quản lý đề thi</a></div>
+            <div class="menu-items1"><a href="submission_management.php"><span class="icon">📋</span> Quản lý bài làm</a></div>
+            <div class="menu-items1"><a href="statistics.php"><span class="icon">📊</span> Thống kê hệ thống</a></div>
+        </div>
 
-<table border="1" cellpadding="8" cellspacing="0">
-    <tr><th colspan="2">👥 Người dùng</th></tr>
-    <tr><td>Tổng số người dùng</td><td><?= $total_users ?></td></tr>
-    <tr><td>Người tạo đề</td><td><?= $total_creators ?></td></tr>
-    <tr><td>Thí sinh</td><td><?= $total_takers ?></td></tr>
+        <div class="line"></div>
+        <div class="main2">
+            <h2>📊 Thống kê hệ thống</h2>
 
-    <tr><th colspan="2">📄 Đề thi & Câu hỏi</th></tr>
-    <tr><td>Tổng số đề thi</td><td><?= $total_tests ?></td></tr>
-    <tr><td>Tổng số câu hỏi</td><td><?= $total_questions ?></td></tr>
+            <table>
+                <tr><th colspan="2">👥 Người dùng</th></tr>
+                <tr><td>Tổng số người dùng</td><td><?= $total_users ?></td></tr>
+                <tr><td>Người tạo đề</td><td><?= $total_creators ?></td></tr>
+                <tr><td>Thí sinh</td><td><?= $total_takers ?></td></tr>
 
-    <tr><th colspan="2">📝 Bài làm</th></tr>
-    <tr><td>Tổng số bài làm</td><td><?= $total_responses ?></td></tr>
-</table>
+                <tr><th colspan="2">📄 Đề thi & Câu hỏi</th></tr>
+                <tr><td>Tổng số đề thi</td><td><?= $total_tests ?></td></tr>
+                <tr><td>Tổng số câu hỏi</td><td><?= $total_questions ?></td></tr>
 
-<br>
-<a href="dashboard_admin.php">← Quay lại trang Admin</a>
+                <tr><th colspan="2">📝 Bài làm</th></tr>
+                <tr><td>Tổng số bài làm</td><td><?= $total_responses ?></td></tr>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        ©2025 Quản lý thi trắc nghiệm
+    </div>
+</div>
+</body>
+</html>

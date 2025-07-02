@@ -13,8 +13,10 @@ if (isset($_SESSION['error'])) {
 <head>
     <meta charset="UTF-8">
     <title>Đăng ký</title>
+    <link rel="stylesheet" href="src/css/register.css">
 </head>
 <body>
+    <div class="register-container">
     <h2>Đăng ký</h2>
 
     <?php include "views/register_form.php"; ?>
@@ -24,9 +26,11 @@ if (isset($_SESSION['error'])) {
     <?php endif; ?>
 
     <br>
-    <div>
+    <div class="links">
         <a href="login.php">Đã có tài khoản? Đăng nhập</a><br>
         <a href="index.php">Quay lại trang chủ</a>
     </div>
+    </div>
+    <script src="src/js/register.js"></script>
 </body>
 </html>

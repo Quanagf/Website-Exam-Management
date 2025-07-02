@@ -13,39 +13,68 @@ if (isset($_SESSION['error'])) {
     $error = $_SESSION['error'];
     unset($_SESSION['error']);
 }
-
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Tạo đề thi</title>
+    <link rel="stylesheet" href="../../src/css/layout.css">
 </head>
 <body>
-    <h2>Tạo đề thi</h2>
+<div class="container">
+    <div class="header">
+        <h1>🎓 Quản lý đề thi</h1>
+        <div class="menu-container">
+            <div class="hamburger">&#9776;</div>
+            <div class="menu-items">
+                <a href="../../index.php">Trang chủ</a>
+                <a href="../account/profile.php">Tài khoản</a>
+                <a href="../../logout.php">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
 
-    <form method="POST" action="../../controllers/TestController.php">
-        <label>📝 Tiêu đề:</label>
-        <input type="text" name="title" required><br><br>
+    <div class="main">
+        <div class="main1">
+         
+            <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span>Quay lại</a></div>
+            <div class="menu-items1"><a href="../account/profile.php"><span class="icon">👤</span> Tài khoản</a></div>
+            <div class="menu-items1"><a href="../../logout.php"><span class="icon">🚪</span> Đăng xuất</a></div>
+        </div>
+        <div class="line"></div>
 
-        <label>📄 Mô tả:</label><br>
-        <textarea name="description" rows="4" cols="50"></textarea><br><br>
+        <div class="main2">
+            <h2>📝 Tạo đề thi mới</h2>
 
-        <label>⏱️ Thời gian làm bài (phút):</label>
-        <input type="number" name="duration" min="1" required><br><br>
+            <?php if (!empty($error)): ?>
+                <p class="message error"><?php echo htmlspecialchars($error); ?></p>
+            <?php endif; ?>
 
-        <label>🕒 Ngày & giờ bắt đầu thi:</label>
-        <input type="datetime-local" name="open_time" required><br><br>
+            <form method="POST" action="../../controllers/TestController.php" class="create-test-form">
+                <label>📝 Tiêu đề:</label><br>
+                <input type="text" name="title" required><br><br>
 
-        <label>🕓 Ngày & giờ kết thúc thi:</label>
-        <input type="datetime-local" name="close_time" required><br><br>
+                <label>📄 Mô tả:</label><br>
+                <textarea name="description" rows="4" cols="50"></textarea><br><br>
 
-        <button type="submit" name="create">✅ Tạo đề</button>
-    </form>
+                <label>⏱️ Thời gian làm bài (phút):</label><br>
+                <input type="number" name="duration" min="1" required><br><br>
 
-    <?php if (!empty($error)): ?>
-    <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
+                <label>🕒 Ngày & giờ bắt đầu thi:</label><br>
+                <input type="datetime-local" name="open_time" required><br><br>
+
+                <label>🕓 Ngày & giờ kết thúc thi:</label><br>
+                <input type="datetime-local" name="close_time" required><br><br>
+
+                <button type="submit" name="create">✅ Tạo đề</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        ©2025 Quản lý thi trắc nghiệm
+    </div>
+</div>
 </body>
 </html>

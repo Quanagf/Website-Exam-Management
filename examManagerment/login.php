@@ -18,24 +18,28 @@ if (isset($_SESSION['success'])) {
 <head>
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
+    <link rel="stylesheet" href="src/css/login.css">
 </head>
 <body>
-    <h2>Đăng nhập</h2>
+    <div class="login-container">
+        <h2>Đăng nhập</h2>
 
-    <?php include "views/login_form.php"; ?>
+        <?php include "views/login_form.php"; ?>
 
-    <?php if (!empty($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
-    <?php if (!empty($success)): ?>
-        <p style="color: green;"><?php echo $success; ?></p>
-    <?php endif; ?>
+        <?php if (!empty($error)): ?>
+            <p class="error"><?php echo $error; ?></p>
+        <?php endif; ?>
+        <?php if (!empty($success)): ?>
+            <p class="success"><?php echo $success; ?></p>
+        <?php endif; ?>
 
-    <br>
-    <div>
-        <a href="register.php">Chưa có tài khoản? Đăng ký</a><br>
-        <a href="views/forgot_password.php">Quên mật khẩu?</a><br>
-        <a href="index.php">Quay lại trang chủ</a>
+        <div class="links">
+            <a href="register.php">Chưa có tài khoản? Đăng ký</a>
+            <a href="views/forgot_password.php">Quên mật khẩu?</a>
+            <a href="index.php">Quay lại trang chủ</a>
+        </div>
     </div>
+
+    <script src="src/js/login.js"></script>
 </body>
 </html>

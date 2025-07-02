@@ -13,8 +13,10 @@ unset($_SESSION['error'], $_SESSION['success']);
 <head>
     <meta charset="UTF-8">
     <title>Quên mật khẩu</title>
+    <link rel="stylesheet" href="../src/css/forgot_password.css">
 </head>
-<body>
+<body >
+    <div class="forgot_password-container">
     <h2>Khôi phục mật khẩu</h2>
 
     <?php if (!empty($error)): ?>
@@ -36,9 +38,11 @@ unset($_SESSION['error'], $_SESSION['success']);
     </form>
 
     <br>
-    <div>
-        <a href="login.php">Quay lại đăng nhập</a><br>
-        <a href="index.php">Trang chủ</a>
+    <div class="links">
+        <a href="../login.php">Quay lại đăng nhập</a><br>
+        <a href="../index.php">Trang chủ</a>
     </div>
+    </div>
+     <script src="../src/js/forgot_password.js"></script>
 </body>
 </html>

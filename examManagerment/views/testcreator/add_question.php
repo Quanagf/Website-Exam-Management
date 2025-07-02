@@ -2,57 +2,84 @@
 session_start();
 require_once '../../controllers/TestController.php';
 require_once __DIR__ . '/../../config/database.php';
+
 // Kiểm tra quyền truy cập
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'creator') {
     header("Location: ../../index.php");
     exit();
 }
+
 $test_id = isset($_GET['test_id']) ? intval($_GET['test_id']) : 0;
 ?>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Thêm câu hỏi mới</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../src/css/layout.css">
 </head>
 <body>
-    <h2>➕ Thêm câu hỏi</h2>
+<div class="container">
+    <div class="header">
+        <h1>➕ Thêm câu hỏi</h1>
+        <div class="menu-container">
+            <div class="hamburger">&#9776;</div>
+            <div class="menu-items">
+                <a href="../../index.php">Trang chủ</a>
+                <a href="../../logout.php">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
 
-    <form action="../../controllers/QuestionController.php" method="POST">
-        <input type="hidden" name="test_id" value="<?= $test_id ?>">
-        <input type="hidden" name="add_question" value="1"> <!-- Đổi tên đúng với controller -->
+    <div class="main">
+        <div class="main1">
+            <div class="menu-items1"><a href="create_test.php"><span class="icon">➕</span> Tạo đề mới</a></div>
+            <div class="menu-items1"><a href="detail_test.php?id=<?= $test_id ?>"><span class="icon">📄</span> Xem đề</a></div>
+            <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span> Quay lại</a></div>
+        </div>
+        <div class="line"></div>
 
-        <label>Câu hỏi:</label><br>
-        <textarea name="content" required></textarea><br>
+        <div class="main2">
+            <h2>✏️ Thêm câu hỏi vào đề #<?= htmlspecialchars($test_id) ?></h2>
 
-        <label>Đáp án A:</label><br>
-        <input type="text" name="option_a" required><br>
+            <form action="../../controllers/QuestionController.php" method="POST" class="update-form">
+                <input type="hidden" name="test_id" value="<?= $test_id ?>">
+                <input type="hidden" name="add_question" value="1">
 
-        <label>Đáp án B:</label><br>
-        <input type="text" name="option_b" required><br>
+                <label>Câu hỏi:</label><br>
+                <textarea name="content" rows="3" required></textarea><br><br>
 
-        <label>Đáp án C:</label><br>
-        <input type="text" name="option_c" required><br>
+                <label>Đáp án A:</label><br>
+                <input type="text" name="option_a" required><br><br>
 
-        <label>Đáp án D:</label><br>
-        <input type="text" name="option_d" required><br>
+                <label>Đáp án B:</label><br>
+                <input type="text" name="option_b" required><br><br>
 
-        <label>Đáp án đúng:</label><br>
-        <select name="correct" required>
-            <option value="">-- Chọn --</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-        </select><br><br>
+                <label>Đáp án C:</label><br>
+                <input type="text" name="option_c" required><br><br>
 
-        <!-- ❌ Bỏ input điểm -->
-        <!-- ✅ Thông báo -->
-        <p style="color: gray; font-size: 14px;">💡 Điểm sẽ được tự động tính: 10 chia đều cho số câu.</p>
+                <label>Đáp án D:</label><br>
+                <input type="text" name="option_d" required><br><br>
 
-        <button type="submit">💾 Lưu câu hỏi</button>
-    </form>
+                <label>Đáp án đúng:</label><br>
+                <select name="correct" required>
+                    <option value="">-- Chọn --</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select><br><br>
+
+                <p style="color: gray; font-size: 14px;">💡 Điểm sẽ tự động tính: 10 chia đều cho số câu.</p>
+
+                <button type="submit">💾 Lưu câu hỏi</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        ©2025 Quản lý thi trắc nghiệm
+    </div>
+</div>
 </body>
 </html>

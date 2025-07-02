@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    margin: 0;
+    padding: 0;
+}
+
+/* Khối chứa tất cả */
+.register-container {
+    background: #ffffff;
+    max-width: 400px;
+    margin: 70px auto;
+    padding: 50px 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Tiêu đề */
+.register-container h2 {
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Form */
+.register-container form {
+    text-align: left;
+}
+
+/* Ô input */
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    width: 92%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border 0.3s, box-shadow 0.3s;
+    font-size: 15px;
+}
+
+.register-container input[type="text"]:focus,
+.register-container input[type="email"]:focus,
+.register-container input[type="password"]:focus {
+    border-color: #74ebd5;
+    box-shadow: 0 0 5px rgba(116,235,213,0.5);
+    outline: none;
+}
+
+/* Nút submit */
+.register-container input[type="submit"] {
+    width: 100%;
+    background: #74ebd5;
+    color: #333;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.register-container input[type="submit"]:hover {
+    background: #67d8c8;
+    transform: translateY(-2px);
+}
+
+/* Thông báo */
+.register-container p {
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.register-container p.error {
+    color: #d9534f;
+}
+
+.register-container p.success {
+    color: #5cb85c;
+}
+
+/* Liên kết */
+.register-container .links {
+    margin-top: 20px;
+}
+
+.register-container .links a {
+    display: block;
+    margin: 0;
+    text-decoration: none;
+    color: #336699;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.register-container .links a:hover {
+    color: #254d73;
+}
