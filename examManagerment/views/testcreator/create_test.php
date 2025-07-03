@@ -37,8 +37,8 @@ if (isset($_SESSION['error'])) {
 
     <div class="main">
         <div class="main1">
-         
-            <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span>Quay lại</a></div>
+
+            <div class="menu-items1"><a href="dashboard_testcreator.php"><span class="icon">🔙</span>Quay lại trang chính</a></div>
             <div class="menu-items1"><a href="../account/profile.php"><span class="icon">👤</span> Tài khoản</a></div>
             <div class="menu-items1"><a href="../../logout.php"><span class="icon">🚪</span> Đăng xuất</a></div>
         </div>

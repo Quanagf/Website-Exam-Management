@@ -52,7 +52,7 @@ $is_editable = ($now < $open_time);
         <div class="main1">
             <div class="menu-items1"><a href="edit_test.php?id=<?= $test['id'] ?>"><span class="icon">✏️</span> Sửa đề</a></div>
             <div class="menu-items1"><a href="add_question.php?test_id=<?= $test['id'] ?>"><span class="icon">➕</span> Thêm câu hỏi</a></div>
-            <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span> Quay lại</a></div>
+            <div class="menu-items1"><a href="dashboard_testcreator.php"><span class="icon">🔙</span> Quay lại trang chính</a></div>
         </div>
         <div class="line"></div>
 

@@ -48,7 +48,7 @@ switch ($user['role']) {
 
     <div class="main">
         <div class="main1">
-            <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span>Quay lại</a></div>
+            <div class="menu-items1"><a href="profile.php"><span class="icon">🔙</span>Quay lại</a></div>
         </div>
         <div class="line"></div>
 

@@ -86,7 +86,7 @@ function getStatus($now, $open_time, $close_time) {
                 <p>
                     <a href="detail_question.php?test_id=<?= $test['id'] ?>" style="margin-right: 10px;">📋 Xem danh sách câu hỏi</a>
                 </p>
-                <a href="dashboard_admin.php">← Quay lại trang quản lý</a>
+                <a href="../../index.php">← Quay lại trang quản lý</a>
             </div>
         </div>
     </div>
