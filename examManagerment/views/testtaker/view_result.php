@@ -52,7 +52,7 @@ if (!isset($total_questions) || !isset($correct_count) || !isset($score) || !iss
 
     <div class="main">
         <div class="main1">
-            <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span> Quay lại</a></div>
+            <div class="menu-items1"><a href="../index.php"><span class="icon">🔙</span> Quay lại trang chính</a></div>
         </div>
         <div class="line"></div>
 

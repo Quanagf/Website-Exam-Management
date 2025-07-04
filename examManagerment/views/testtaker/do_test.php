@@ -87,7 +87,7 @@ body { background:#f4f6f9; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans
         </div>
         <div class="line"></div>
         <div class="main2">
-            <form method="POST" action="../../controllers/DotestController.php" id="test-form">
+            <form method="POST" action="../controllers/DotestController.php" id="test-form">
                 <input type="hidden" name="submit_test" value="1">
                 <input type="hidden" name="test_id" value="<?= $test_id ?>">
                 <div style="margin-top:10px; font-weight:bold;">
