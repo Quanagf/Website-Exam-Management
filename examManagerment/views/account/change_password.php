@@ -48,11 +48,7 @@ switch ($user['role']) {
 
     <div class="main">
         <div class="main1">
-<<<<<<< HEAD
             <div class="menu-items1"><a href="../../index.php"><span class="icon">🔙</span>Quay lại</a></div>
-=======
-            <div class="menu-items1"><a href="profile.php"><span class="icon">🔙</span>Quay lại</a></div>
->>>>>>> f9c5ad8447f10d1fc97a7105e6dde39e12371aef
         </div>
         <div class="line"></div>
 

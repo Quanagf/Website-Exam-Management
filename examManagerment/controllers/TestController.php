@@ -228,12 +228,10 @@ if (isset($_GET['statistics']) && isset($_GET['id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'reset_attempt') {
     $testId = intval($_POST['test_id']);
     $userId = intval($_POST['user_id']);
-
-<<<<<<< HEAD
     $stmt = $conn->prepare("UPDATE test_responses 
         SET status = 'pending', submitted_at = NULL, score = NULL, force_reset_time = 0
         WHERE test_id = ? AND test_taker_id = ?");
-=======
+
     // Lấy thời gian kết thúc của bài kiểm tra từ cơ sở dữ liệu
     $stmt = $conn->prepare("SELECT end_time FROM tests WHERE id = ?");
     $stmt->bind_param("i", $testId);
@@ -254,7 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'reset_attempt
     // Cập nhật status = pending và xoá thời gian + điểm
     $stmt = $conn->prepare("UPDATE test_responses SET status = 'pending', submitted_at = NULL, score = NULL 
                             WHERE test_id = ? AND test_taker_id = ?");
->>>>>>> f9c5ad8447f10d1fc97a7105e6dde39e12371aef
+
     $stmt->bind_param("ii", $testId, $userId);
     $stmt->execute();
 
