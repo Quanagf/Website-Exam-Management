@@ -50,8 +50,6 @@ $is_editable = ($now < $open_time);
 
     <div class="main">
         <div class="main1">
-            <div class="menu-items1"><a href="edit_test.php?id=<?= $test['id'] ?>"><span class="icon">✏️</span> Sửa đề</a></div>
-            <div class="menu-items1"><a href="add_question.php?test_id=<?= $test['id'] ?>"><span class="icon">➕</span> Thêm câu hỏi</a></div>
             <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span> Quay lại</a></div>
         </div>
         <div class="line"></div>
@@ -182,11 +180,19 @@ $is_editable = ($now < $open_time);
                             <td><?= $row['submitted_at'] ?? '...' ?></td>
                             <td>
                                 <?php if ($row['status'] === 'completed'): ?>
-                                    <form method="post" action="../../controllers/TestController.php" onsubmit="return confirm('Cho phép làm lại bài này?');">
+                                     <form method="post" action="../../controllers/TestController.php" style="display:inline;"
+                                        onsubmit="return confirm('Cho phép làm lại và giữ nguyên thời gian?');">
                                         <input type="hidden" name="action" value="reset_attempt">
                                         <input type="hidden" name="test_id" value="<?= $test_id ?>">
                                         <input type="hidden" name="user_id" value="<?= $row['test_taker_id'] ?>">
-                                        <button type="submit">🔁 Cho làm lại</button>
+                                        <button type="submit">🔄 Làm lại (Giữ thời gian)</button>
+                                    </form>
+                                    <form method="post" action="../../controllers/TestController.php" style="display:inline; margin-left:5px;"
+                                        onsubmit="return confirm('Cho phép làm lại và reset thời gian mới?');">
+                                        <input type="hidden" name="action" value="reset_attempt_resettime">
+                                        <input type="hidden" name="test_id" value="<?= $test_id ?>">
+                                        <input type="hidden" name="user_id" value="<?= $row['test_taker_id'] ?>">
+                                        <button type="submit">🕒 Làm lại (Reset thời gian)</button>
                                     </form>
                                 <?php else: ?>
                                     <em style="color: green;">✔️ Đang chờ làm lại</em>

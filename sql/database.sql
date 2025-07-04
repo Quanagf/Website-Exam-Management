@@ -91,6 +91,7 @@ CREATE TABLE `test_responses` (
   `score` float DEFAULT NULL,
   `submitted_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `status` enum('pending','completed') NOT NULL DEFAULT 'completed',
+  `force_reset_time` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `test_taker_id` (`test_taker_id`),
   KEY `test_responses_ibfk_1` (`test_id`),
@@ -108,58 +109,32 @@ INSERT INTO `users` VALUES
 (14,'fqafa','$2y$10$KFyn1GSyQDdVVd8jQNFhP.J/JR3i62EzSucWrkXGHTV5M/f3ISPDC','ad@hadw.com','creator',NULL,'2025-06-25 03:20:47','active'),
 (16,'quan1192005','$2y$10$M5s0h5vrrs0y7Sq1q7q8quZgTidivbOqUMaEtxb63PNJkxTJwq3qm','quantranhoang24@gmail.com','taker','Trần Hoàng Quân','2025-06-25 03:45:05','active'),
 (17,'quan12','$2y$10$.V20/o1D6Kv7MxtDTmsWvuclpa6.0Il/FbFAoE2widHYYf6Iltgr.','quantran@gmail.com','creator',NULL,'2025-06-29 09:49:54','active'),
-(19,'admin','1230','admin@gmail.com','admin','admin','2025-07-01 19:37:10','active');
-(21,'vu123','123123','min@gmail.com','taker','vu123','2025-07-01 19:37:10','active');
+(19,'admin','$2y$10$MEpVsazYfPeXKEn0x6FDAulKyqTz6iBfM8oIocCz0kRyDWIDiWQsq','admin@gmail.com','admin','admin','2025-07-01 19:37:10','active');
+
 
 -- =====================================
 -- Dữ liệu bảng `tests`
 -- =====================================
 INSERT INTO `tests` VALUES
-(82,8,'adwad','ădada',15,'2025-07-01 20:41:10','R9Q41S',0,'2025-07-01 20:41:00','2025-08-01 20:45:00'),
-(83,8,'ưdadawjkd','ădjladjnawdâd',15,'2025-07-01 20:46:03','3OCTV7',0,'2025-07-01 20:51:00','2025-07-10 20:45:00'),
-(85,8,'á','zsa',32,'2025-07-02 00:08:26','6ZIZHI',0,'2025-07-02 00:08:00','2025-07-02 00:10:00'),
-(86,8,'ăda','ădad',10,'2025-07-02 00:12:11','B8T4T5',0,'2025-07-02 00:15:00','2025-07-02 00:34:00');
 
+;
 -- =====================================
 -- Dữ liệu bảng `questions`
 -- =====================================
 INSERT INTO `questions` VALUES
-(66,83,'adawdhkadhjh','ahdjwhda','haldwjdahdu','ăhdljdhaj','ăljdadaww','C',3.33),
-(67,83,'ădkajhdj','alwjkdjakdj','uahwudhaidh','uahuwhdu','uhdsuhad','D',3.33),
-(68,83,'ădhaikdhkj','ahkwdhkajhd','kjahkjdhwjh','khkajhdj','khakjhw','C',3.33),
-(70,86,'ădad','adwwad','adwad','adwad','adwa','C',1.25),
-(71,86,'ădadad','adwdad','adwad','ăd','ad','B',1.25),
-(72,86,'dfg','áda','ằ','adw','ădad','C',1.25),
-(73,86,'sfsg','sgeghf','dfd','sdc','sdfsf','A',1.25),
-(74,86,'adwasa','fasfa','câc','sfawf','à','B',1.25),
-(75,86,'adwdwad','adsa','đâ','sdawd','ădf','C',1.25),
-(76,86,'adwad','ưdad','uawd','ădada','ưdad','D',1.25),
-(77,86,'adwa','adad','adwa','dưa','đâ','D',1.25);
 
+;
 -- =====================================
 -- Dữ liệu bảng `question_responses`
 -- =====================================
 INSERT INTO `question_responses` VALUES
-(135,16,83,66,'C','2025-07-01 23:06:17'),
-(136,16,83,67,'D','2025-07-01 23:06:17'),
-(137,16,83,68,'B','2025-07-01 23:06:17'),
-(155,16,86,70,'C','2025-07-02 00:23:35'),
-(156,16,86,71,'B','2025-07-02 00:23:35'),
-(157,16,86,72,'C','2025-07-02 00:23:35'),
-(158,16,86,73,'A','2025-07-02 00:23:35'),
-(159,16,86,74,'B','2025-07-02 00:23:35'),
-(160,16,86,75,'C','2025-07-02 00:23:35'),
-(161,16,86,76,'D','2025-07-02 00:23:35'),
-(162,16,86,77,'D','2025-07-02 00:23:35');
+;
 
 -- =====================================
 -- Dữ liệu bảng `test_responses`
 -- =====================================
 INSERT INTO `test_responses` VALUES
-(20,83,16,6.67,'2025-07-01 23:06:17','completed'),
-(21,86,16,10,'2025-07-02 00:23:35','completed');
 
-UPDATE `users`
-SET `role` = 'admin'
-WHERE `id` = 21;
+;
+
 

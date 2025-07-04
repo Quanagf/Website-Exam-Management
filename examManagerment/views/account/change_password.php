@@ -31,7 +31,7 @@ switch ($user['role']) {
 <head>
     <meta charset="UTF-8">
     <title>Đổi mật khẩu</title>
-    <link rel="stylesheet" href="../../src/css/layuot.css">
+    <link rel="stylesheet" href="../../src/css/layout.css">
 </head>
 <body>
 <div class="container">
@@ -48,7 +48,7 @@ switch ($user['role']) {
 
     <div class="main">
         <div class="main1">
-            <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span>Quay lại</a></div>
+            <div class="menu-items1"><a href="../../index.php"><span class="icon">🔙</span>Quay lại</a></div>
         </div>
         <div class="line"></div>
 

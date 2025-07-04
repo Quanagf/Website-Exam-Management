@@ -27,8 +27,7 @@ if (isset($_SESSION['error'])) {
 
     <br>
     <div class="links">
-        <a href="login.php">Đã có tài khoản? Đăng nhập</a><br>
-        <a href="index.php">Quay lại trang chủ</a>
+        <a href="index.php">Đã có tài khoản? Đăng nhập</a><br>
     </div>
     </div>
     <script src="src/js/register.js"></script>

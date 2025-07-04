@@ -39,8 +39,7 @@ unset($_SESSION['error'], $_SESSION['success']);
 
     <br>
     <div class="links">
-        <a href="../login.php">Quay lại đăng nhập</a><br>
-        <a href="../index.php">Trang chủ</a>
+        <a href="../index.php">Quay lại đăng nhập</a><br>
     </div>
     </div>
      <script src="../src/js/forgot_password.js"></script>

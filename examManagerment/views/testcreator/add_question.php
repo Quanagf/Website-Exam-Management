@@ -33,8 +33,6 @@ $test_id = isset($_GET['test_id']) ? intval($_GET['test_id']) : 0;
 
     <div class="main">
         <div class="main1">
-            <div class="menu-items1"><a href="create_test.php"><span class="icon">➕</span> Tạo đề mới</a></div>
-            <div class="menu-items1"><a href="detail_test.php?id=<?= $test_id ?>"><span class="icon">📄</span> Xem đề</a></div>
             <div class="menu-items1"><a href="javascript:history.back()"><span class="icon">🔙</span> Quay lại</a></div>
         </div>
         <div class="line"></div>
