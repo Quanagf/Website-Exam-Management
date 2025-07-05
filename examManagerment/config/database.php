@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "Quan11092005@";
+$pass = "";
 $dbname = "exam_management";
 
 $conn = new mysqli($host, $user, $pass, $dbname);

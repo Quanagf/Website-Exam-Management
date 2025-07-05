@@ -53,9 +53,6 @@ unset($_SESSION['success'], $_SESSION['error']);
             <div class="main1">
 
                 <div class="menu-items1">
-                    <a href="detail_test.php?id=<?= $test_id ?>"><span class="icon">📄</span> Xem đề</a>
-                </div>
-                <div class="menu-items1">
                     <a href="javascript:history.back()"><span class="icon">🔙</span> Quay lại</a>
                 </div>
             </div>

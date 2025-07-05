@@ -24,7 +24,7 @@ unset($_SESSION['error'], $_SESSION['success']);
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎓 Quản lý đề thi</h1>
+            <h1>🎯 Xin chào, <?= htmlspecialchars($user['fullname'] ?? $user['username']) ?>!</h1>
             <div class="menu-container">
                 <div class="hamburger">&#9776;</div>
                 <div class="menu-items">
@@ -45,7 +45,7 @@ unset($_SESSION['error'], $_SESSION['success']);
             <div class="line"></div>
 
             <div class="main2">
-                <h2>👋 Xin chào, <?= htmlspecialchars($user['fullname'] ?? $user['username']) ?>!</h2>
+                
 
                 <?php if ($error): ?>
                     <p class="message error"><?= htmlspecialchars($error) ?></p>

@@ -23,8 +23,9 @@ if (!isset($questions) || !isset($user_answers)) {
 <head>
     <meta charset="UTF-8">
     <title>Kết quả chi tiết</title>
-    <link rel="stylesheet" href="../../src/css/layout.css">
+    <link rel="stylesheet" href="../src/css/layout.css">
     <style>
+        
         .answer-correct {
             background: #d4edda;
         }

@@ -56,14 +56,8 @@ $is_after_test = ($now > $close_time);
 
         <div class="main">
             <div class="main1">
-                <div class="menu-items1"><a href="edit_test.php?id=<?= $test['id'] ?>"><span class="icon">✏️</span> Sửa
-                        đề</a></div>
-                <?php if ($is_before_test || $is_after_test): ?>
-                    <div class="menu-items1"><a href="add_question.php?test_id=<?= $test['id'] ?>"><span
-                                class="icon">➕</span> Thêm câu hỏi</a></div>
-                <?php endif; ?>
-                <div class="menu-items1"><a href="dashboard_testcreator.php"><span class="icon">🔙</span> Quay lại trang
-                        chính</a></div>
+            
+                <div class="menu-items1"><a href="dashboard_testcreator.php"><span class="icon">🔙</span> Quay lại </a></div>
             </div>
             <div class="line"></div>
 
@@ -186,10 +180,11 @@ $is_after_test = ($now > $close_time);
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Username</th>
+                                <th>Tên</th>
                                 <th>Điểm</th>
                                 <th>Trạng thái</th>
                                 <th>Thời gian nộp</th>
+                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -201,6 +196,19 @@ $is_after_test = ($now > $close_time);
                                     <td><?= is_null($row['score']) ? '...' : $row['score'] ?></td>
                                     <td><?= ucfirst($row['status']) ?></td>
                                     <td><?= $row['submitted_at'] ?? '...' ?></td>
+                                    <td>
+                                     <?php if ($row['status'] === 'completed'): ?>
+                                    <form method="post" action="../../controllers/TestController.php" style="display:inline; margin-left:5px;"
+                                        onsubmit="return confirm('Cho phép làm lại và reset thời gian mới?');">
+                                        <input type="hidden" name="action" value="reset_attempt_resettime">
+                                        <input type="hidden" name="test_id" value="<?= $test_id ?>">
+                                        <input type="hidden" name="user_id" value="<?= $row['test_taker_id'] ?>">
+                                        <button type="submit">🕒 Làm lại </button>
+                                    </form>
+                                <?php else: ?>
+                                    <em style="color: green;">✔️ Đang chờ làm lại</em>
+                                <?php endif; ?>
+                            </td>
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>

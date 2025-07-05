@@ -218,3 +218,22 @@ if (isset($_GET['statistics']) && isset($_GET['id'])) {
     header("Location: ../views/testcreator/statistics.php");
     exit();
 }
+// 🎯 RESET VÀ RESET THỜI GIAN
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'reset_attempt_resettime') {
+    $testId = intval($_POST['test_id']);
+    $userId = intval($_POST['user_id']);
+
+    $stmt = $conn->prepare("UPDATE test_responses 
+        SET status = 'pending', submitted_at = NULL, score = NULL, force_reset_time = 1
+        WHERE test_id = ? AND test_taker_id = ?");
+    $stmt->bind_param("ii", $testId, $userId);
+    $stmt->execute();
+
+    $stmt2 = $conn->prepare("DELETE FROM question_responses WHERE test_id = ? AND user_id = ?");
+    $stmt2->bind_param("ii", $testId, $userId);
+    $stmt2->execute();
+
+    $_SESSION['success'] = "✅ Đã cho phép thí sinh làm lại và reset thời gian.";
+    header("Location: ../views/testcreator/detail_test.php?id=$testId");
+    exit();
+}

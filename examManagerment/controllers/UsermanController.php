@@ -1,6 +1,9 @@
 <?php
 require_once(__DIR__ . '/../config/database.php');
-session_start(); // ⚠️ BẮT BUỘC để session hoạt động
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // ✅ Kiểm tra đăng nhập & quyền admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {

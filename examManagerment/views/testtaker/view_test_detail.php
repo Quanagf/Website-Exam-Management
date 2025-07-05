@@ -93,7 +93,7 @@ $score = $_SESSION['test_score'];
                     <?php endforeach; ?>
                 <?php endif; ?>
 
-
+            </div>
             </div>
 
             <div class="footer">

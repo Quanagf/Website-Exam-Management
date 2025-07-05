@@ -22,7 +22,7 @@ if (!isset($total_questions) || !isset($correct_count) || !isset($score) || !iss
 <head>
     <meta charset="UTF-8">
     <title>Kết quả nộp bài</title>
-    <link rel="stylesheet" href="../../src/css/layout.css">
+    <link rel="stylesheet" href="../src/css/layout.css">
     <style>
         .result-box {
             border: 1px solid #ccc;
@@ -55,7 +55,7 @@ if (!isset($total_questions) || !isset($correct_count) || !isset($score) || !iss
 
         <div class="main">
             <div class="main1">
-                <div class="menu-items1"><a href="../index.php"><span class="icon">🔙</span> Quay lại trang chính</a>
+                <div class="menu-items1"><a href="../index.php"><span class="icon">🔙</span> Quay lại </a>
                 </div>
             </div>
             <div class="line"></div>
