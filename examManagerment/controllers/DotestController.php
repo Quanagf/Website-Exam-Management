@@ -114,7 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_test'])) {
     foreach ($answers as $question_id => $selected_option) {
         $question_id = intval($question_id);
         $selected_option = strtoupper(trim($selected_option));
-        if (!in_array($selected_option, ['A', 'B', 'C', 'D'])) continue;
+        if (!in_array($selected_option, ['A', 'B', 'C', 'D']))
+            continue;
 
         $sql = "INSERT INTO question_responses (user_id, test_id, question_id, selected_option) 
                 VALUES (?, ?, ?, ?)";
@@ -154,7 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_GET['action'] === 'result') {
     foreach ($questions as $q) {
         $qid = $q['id'];
         $correct = strtoupper($q['correct']);
-        if (($answer_map[$qid] ?? '') === $correct) $correct_count++;
+        if (($answer_map[$qid] ?? '') === $correct)
+            $correct_count++;
     }
 
     $score = round(($correct_count / max($total_questions, 1)) * 10, 2);

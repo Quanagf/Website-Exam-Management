@@ -37,64 +37,69 @@ if ($response) {
 ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <title>📄 Chi tiết đề thi</title>
     <link rel="stylesheet" href="../../src/css/layout.css">
 </head>
+
 <body>
-<div class="container">
-    <div class="header">
-        <h1>📄 Chi tiết đề thi</h1>
-        <div class="menu-container">
-            <div class="hamburger">&#9776;</div>
-            <div class="menu-items">
-                <a href="../../index.php">Trang chủ</a>
-                <a href="../../logout.php">Đăng xuất</a>
+    <div class="container">
+        <div class="header">
+            <h1>📄 Chi tiết đề thi</h1>
+            <div class="menu-container">
+                <div class="hamburger">&#9776;</div>
+                <div class="menu-items">
+                    <a href="../../index.php">Trang chủ</a>
+                    <a href="../../logout.php">Đăng xuất</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="main">
-        <div class="main1">
-            <div class="menu-items1"><a href="dashboard_taker.php"><span class="icon">🏠</span> Trang chính</a></div>
-            <div class="menu-items1"><a href="../account/profile.php"><span class="icon">👤</span> Tài khoản</a></div>
-            <div class="menu-items1"><a href="../../index.php"><span class="icon">🔙</span> Quay lại </a></div>
-            <div class="menu-items1"><a href="../../logout.php"><span class="icon">🚪</span> Đăng xuất</a></div>
+        <div class="main">
+            <div class="main1">
+                <div class="menu-items1"><a href="dashboard_taker.php"><span class="icon">🏠</span> Trang chính</a>
+                </div>
+                <div class="menu-items1"><a href="../account/profile.php"><span class="icon">👤</span> Tài khoản</a>
+                </div>
+                <div class="menu-items1"><a href="../../index.php"><span class="icon">🔙</span> Quay lại </a></div>
+                <div class="menu-items1"><a href="../../logout.php"><span class="icon">🚪</span> Đăng xuất</a></div>
+            </div>
+            <div class="line"></div>
+
+            <div class="main2">
+                <h2><?= htmlspecialchars($test['title']) ?></h2>
+                <p><strong>Mô tả:</strong><br><?= nl2br(htmlspecialchars($test['description'])) ?></p>
+                <p><strong>⏱ Thời lượng:</strong> <?= $test['duration'] ?> phút</p>
+                <p><strong>🟢 Thời gian mở:</strong> <?= $test['open_time'] ?></p>
+                <p><strong>🔴 Thời gian đóng:</strong> <?= $test['close_time'] ?></p>
+
+                <hr>
+
+                <?php if ($has_submitted): ?>
+                    <p style="color: red;">⚠️ Bạn đã tham gia bài thi này rồi. Không thể làm lại.</p>
+                <?php elseif ($time['now'] < $time['start']): ?>
+                    <p style="color: orange;">⏳ Đề thi chưa mở. Vui lòng quay lại sau.</p>
+                <?php elseif ($time['now'] > $time['end']): ?>
+                    <p style="color: red;">❌ Đề thi đã kết thúc.</p>
+                <?php else: ?>
+                    <form method="GET" action="../../controllers/DotestController.php">
+                        <input type="hidden" name="id" value="<?= $test['id'] ?>">
+                        <button type="submit">
+                            🚀 <?= $can_retry ? 'Làm lại bài thi' : 'Vào thi' ?>
+                        </button>
+                    </form>
+                <?php endif; ?>
+
+
+            </div>
         </div>
-        <div class="line"></div>
 
-        <div class="main2">
-            <h2><?= htmlspecialchars($test['title']) ?></h2>
-            <p><strong>Mô tả:</strong><br><?= nl2br(htmlspecialchars($test['description'])) ?></p>
-            <p><strong>⏱ Thời lượng:</strong> <?= $test['duration'] ?> phút</p>
-            <p><strong>🟢 Thời gian mở:</strong> <?= $test['open_time'] ?></p>
-            <p><strong>🔴 Thời gian đóng:</strong> <?= $test['close_time'] ?></p>
-
-            <hr>
-
-            <?php if ($has_submitted): ?>
-                <p style="color: red;">⚠️ Bạn đã tham gia bài thi này rồi. Không thể làm lại.</p>
-            <?php elseif ($time['now'] < $time['start']): ?>
-                <p style="color: orange;">⏳ Đề thi chưa mở. Vui lòng quay lại sau.</p>
-            <?php elseif ($time['now'] > $time['end']): ?>
-                <p style="color: red;">❌ Đề thi đã kết thúc.</p>
-            <?php else: ?>
-                <form method="GET" action="../../controllers/DotestController.php">
-                    <input type="hidden" name="id" value="<?= $test['id'] ?>">
-                    <button type="submit">
-                        🚀 <?= $can_retry ? 'Làm lại bài thi' : 'Vào thi' ?>
-                    </button>
-                </form>
-            <?php endif; ?>
-
-           
+        <div class="footer">
+            ©2025 Hệ thống thi trắc nghiệm
         </div>
     </div>
-
-    <div class="footer">
-        ©2025 Hệ thống thi trắc nghiệm
-    </div>
-</div>
 </body>
+
 </html>

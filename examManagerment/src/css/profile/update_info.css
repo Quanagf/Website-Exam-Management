@@ -1,0 +1,69 @@
+.main2 {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.main2 h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.update-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+.update-form input[type="text"],
+.update-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.update-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-form button:hover {
+    background-color: #218838;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

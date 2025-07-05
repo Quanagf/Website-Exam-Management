@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_question'])) {
 // ✅ Xử lý xoá câu hỏi
 if ($_GET['action'] === 'delete' && isset($_GET['question_id'], $_GET['test_id'])) {
     $question_id = intval($_GET['question_id']);
-    $test_id     = intval($_GET['test_id']);
+    $test_id = intval($_GET['test_id']);
 
     // Kiểm tra quyền
     if (!$question_id || !$test_id) {

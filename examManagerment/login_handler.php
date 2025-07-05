@@ -2,6 +2,7 @@
 session_start();
 require_once(__DIR__ . '/config/database.php');
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     break;
                 default:
                     $_SESSION['error'] = "Không xác định được vai trò!";
-                    header("Location: login.php");
+                    header("Location: index.php");
             }
             exit();
         } else {
@@ -42,6 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error'] = "Tài khoản không tồn tại!";
     }
 
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }

@@ -13,7 +13,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'creator') {
 }
 
 // Hàm tạo mã chia sẻ ngẫu nhiên
-function generateShareCode($length = 6) {
+function generateShareCode($length = 6)
+{
     $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     $code = '';
     for ($i = 0; $i < $length; $i++) {
@@ -165,15 +166,15 @@ if (isset($_GET['statistics']) && isset($_GET['id'])) {
         exit();
     }
 
-    $now = time();
-    $end_time = strtotime($test['close_time']);
+    $now = time();  // Thời gian hiện tại
+    $end_time = strtotime($test['close_time']);  // Thời gian kết thúc bài thi
 
+    // Nếu bài thi chưa kết thúc
     if ($now < $end_time) {
-        $_SESSION['error'] = "Đề thi vẫn đang mở. Thống kê chỉ hiển thị sau khi kết thúc.";
+        $_SESSION['error'] = "Thống kê chỉ hiển thị sau khi kết thúc.";
         header("Location: ../views/testcreator/detail_test.php?id=" . $test_id);
         exit();
     }
-
 
     // Truy vấn thống kê
     $stmt = $conn->prepare("
@@ -186,8 +187,6 @@ if (isset($_GET['statistics']) && isset($_GET['id'])) {
         FROM test_responses
         WHERE test_id = ?
     ");
-
-    
 
     if (!$stmt) {
         die("Lỗi prepare SQL: " . $conn->error);
@@ -213,74 +212,9 @@ if (isset($_GET['statistics']) && isset($_GET['id'])) {
     $stmt_users->execute();
     $user_results = $stmt_users->get_result()->fetch_all(MYSQLI_ASSOC);
 
-
     $_SESSION['statistics'] = $result; // thống kê tổng
     $_SESSION['test_title'] = $test['title'];
     $_SESSION['user_results'] = $user_results;
     header("Location: ../views/testcreator/statistics.php");
-    exit();
-
-
-
-}
-
-// 🎯 RESET GIỮ NGUYÊN THỜI GIAN
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'reset_attempt') {
-    $testId = intval($_POST['test_id']);
-    $userId = intval($_POST['user_id']);
-    $stmt = $conn->prepare("UPDATE test_responses 
-        SET status = 'pending', submitted_at = NULL, score = NULL, force_reset_time = 0
-        WHERE test_id = ? AND test_taker_id = ?");
-
-    // Lấy thời gian kết thúc của bài kiểm tra từ cơ sở dữ liệu
-    $stmt = $conn->prepare("SELECT end_time FROM tests WHERE id = ?");
-    $stmt->bind_param("i", $testId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $test = $result->fetch_assoc();
-    
-    // Kiểm tra nếu thời gian kết thúc đã qua
-    $endTime = strtotime($test['end_time']);
-    $currentTime = time(); // Thời gian hiện tại
-
-    if ($currentTime > $endTime) {
-        $_SESSION['error'] = "❌ Thời gian kết thúc bài kiểm tra đã qua. Bạn không thể làm lại bài kiểm tra.";
-        header("Location: ../views/testcreator/detail_test.php?id=$testId");
-        exit();
-    }
-
-    // Cập nhật status = pending và xoá thời gian + điểm
-    $stmt = $conn->prepare("UPDATE test_responses SET status = 'pending', submitted_at = NULL, score = NULL 
-                            WHERE test_id = ? AND test_taker_id = ?");
-
-    $stmt->bind_param("ii", $testId, $userId);
-    $stmt->execute();
-
-    $stmt2 = $conn->prepare("DELETE FROM question_responses WHERE test_id = ? AND user_id = ?");
-    $stmt2->bind_param("ii", $testId, $userId);
-    $stmt2->execute();
-
-    $_SESSION['success'] = "✅ Đã cho phép thí sinh làm lại (giữ nguyên thời gian).";
-    header("Location: ../views/testcreator/detail_test.php?id=$testId");
-    exit();
-}
-
-// 🎯 RESET VÀ RESET THỜI GIAN
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'reset_attempt_resettime') {
-    $testId = intval($_POST['test_id']);
-    $userId = intval($_POST['user_id']);
-
-    $stmt = $conn->prepare("UPDATE test_responses 
-        SET status = 'pending', submitted_at = NULL, score = NULL, force_reset_time = 1
-        WHERE test_id = ? AND test_taker_id = ?");
-    $stmt->bind_param("ii", $testId, $userId);
-    $stmt->execute();
-
-    $stmt2 = $conn->prepare("DELETE FROM question_responses WHERE test_id = ? AND user_id = ?");
-    $stmt2->bind_param("ii", $testId, $userId);
-    $stmt2->execute();
-
-    $_SESSION['success'] = "✅ Đã cho phép thí sinh làm lại và reset thời gian.";
-    header("Location: ../views/testcreator/detail_test.php?id=$testId");
     exit();
 }

@@ -4,33 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// ✅ XỬ LÝ ĐĂNG NHẬP
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
-    $username = trim($_POST['username']);
-    $password = $_POST['password'];
-
-    $sql = "SELECT * FROM users WHERE username=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($user = $result->fetch_assoc()) {
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['user'] = $user;
-            $_SESSION['success'] = "✅ Đăng nhập thành công!";
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            $_SESSION['error'] = "❌ Sai mật khẩu!";
-        }
-    } else {
-        $_SESSION['error'] = "❌ Tài khoản không tồn tại!";
-    }
-    header("Location: index.php");
-    exit();
-}
-
 // ✅ XỬ LÝ ĐĂNG KÝ
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $fullname = trim($_POST['fullname']); // thêm fullname
